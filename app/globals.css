@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fdfcfa;
+  --foreground: #3f3f46;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #f4f2f8;
+    --foreground: #3f3f46;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Ambient motion — disabled when user prefers reduced motion */
+@keyframes portfolio-blob-a {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.22;
+  }
+  40% {
+    transform: translate(12%, -8%) scale(1.12);
+    opacity: 0.34;
+  }
+  70% {
+    transform: translate(-8%, 10%) scale(0.92);
+    opacity: 0.26;
+  }
+}
+
+@keyframes portfolio-blob-b {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translate(-14%, -12%) scale(1.08);
+    opacity: 0.32;
+  }
+}
+
+@keyframes portfolio-blob-c {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.18;
+  }
+  45% {
+    transform: translate(6%, 14%) scale(1.06);
+    opacity: 0.28;
+  }
+}
+
+@keyframes portfolio-shine {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.portfolio-blob-a {
+  animation: portfolio-blob-a 22s ease-in-out infinite;
+}
+
+.portfolio-blob-b {
+  animation: portfolio-blob-b 28s ease-in-out infinite;
+}
+
+.portfolio-blob-c {
+  animation: portfolio-blob-c 18s ease-in-out infinite -4s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-blob-a,
+  .portfolio-blob-b,
+  .portfolio-blob-c {
+    animation: none;
+    opacity: 0.22;
+  }
+
+  .portfolio-text-shine {
+    animation: none;
+    background-position: 50% 50%;
+  }
+}
+
+.portfolio-text-shine {
+  background: linear-gradient(
+    110deg,
+    #52525b 0%,
+    #e879f9 24%,
+    #fbbf24 44%,
+    #22d3ee 64%,
+    #a78bfa 84%,
+    #52525b 100%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: portfolio-shine 7s linear infinite;
+}
+
+@media (prefers-color-scheme: dark) {
+  .portfolio-text-shine {
+    background: linear-gradient(
+      110deg,
+      #3f3f46 0%,
+      #c026d3 22%,
+      #d97706 42%,
+      #0891b2 62%,
+      #7c3aed 82%,
+      #3f3f46 100%
+    );
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
