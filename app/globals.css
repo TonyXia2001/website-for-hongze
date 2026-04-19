@@ -1,136 +1,103 @@
 @import "tailwindcss";
 
+/* Warm, bright palette — pairs with a red-forward hero portrait.
+   Stays light regardless of OS theme (prefers-color-scheme) so the site
+   always matches the cream / rose layout you see in design. */
 :root {
-  --background: #fdfcfa;
-  --foreground: #3f3f46;
+  color-scheme: light;
+  --background: #fff9f6;
+  --foreground: #3a3232;
+  --muted: #6d5f5d;
+  --surface: #fff3ef;
+  --surface-elevated: #ffede8;
+  --classical-accent: #a84a42;
+  --classical-accent-soft: #c8926a;
+  --classical-line: #ecd5cf;
+  --btn-primary-bg: #9c423d;
+  --btn-primary-bg-hover: #863632;
+  --btn-primary-fg: #fffdfb;
+  --video-chrome: #4a3535;
+  /* Headings / name — always strong contrast on cream (avoids pale or “white” look) */
+  --heading-ink: #1a0f0f;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-classical-sans);
+  --font-serif: var(--font-classical-serif);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #f4f2f8;
-    --foreground: #3f3f46;
-  }
+html {
+  background: var(--background);
 }
 
 body {
+  min-height: 100%;
   background: var(--background);
   color: var(--foreground);
 }
 
-/* Ambient motion — disabled when user prefers reduced motion */
-@keyframes portfolio-blob-a {
+/* Soft ambient wash — warm rose & peach (harmonises with red in photos) */
+@keyframes classical-wash-a {
   0%,
   100% {
     transform: translate(0, 0) scale(1);
-    opacity: 0.22;
-  }
-  40% {
-    transform: translate(12%, -8%) scale(1.12);
-    opacity: 0.34;
-  }
-  70% {
-    transform: translate(-8%, 10%) scale(0.92);
-    opacity: 0.26;
-  }
-}
-
-@keyframes portfolio-blob-b {
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
-    opacity: 0.2;
-  }
-  50% {
-    transform: translate(-14%, -12%) scale(1.08);
-    opacity: 0.32;
-  }
-}
-
-@keyframes portfolio-blob-c {
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
-    opacity: 0.18;
+    opacity: 0.14;
   }
   45% {
-    transform: translate(6%, 14%) scale(1.06);
-    opacity: 0.28;
+    transform: translate(8%, -6%) scale(1.06);
+    opacity: 0.22;
   }
 }
 
-@keyframes portfolio-shine {
-  0% {
-    background-position: 0% 50%;
-  }
+@keyframes classical-wash-b {
+  0%,
   100% {
-    background-position: 200% 50%;
+    transform: translate(0, 0) scale(1);
+    opacity: 0.12;
+  }
+  50% {
+    transform: translate(-10%, -8%) scale(1.04);
+    opacity: 0.2;
   }
 }
 
-.portfolio-blob-a {
-  animation: portfolio-blob-a 22s ease-in-out infinite;
+@keyframes classical-wash-c {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.1;
+  }
+  40% {
+    transform: translate(5%, 10%) scale(1.03);
+    opacity: 0.18;
+  }
 }
 
-.portfolio-blob-b {
-  animation: portfolio-blob-b 28s ease-in-out infinite;
+.classical-wash-a {
+  animation: classical-wash-a 32s ease-in-out infinite;
 }
 
-.portfolio-blob-c {
-  animation: portfolio-blob-c 18s ease-in-out infinite -4s;
+.classical-wash-b {
+  animation: classical-wash-b 40s ease-in-out infinite;
+}
+
+.classical-wash-c {
+  animation: classical-wash-c 26s ease-in-out infinite -3s;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .portfolio-blob-a,
-  .portfolio-blob-b,
-  .portfolio-blob-c {
+  .classical-wash-a,
+  .classical-wash-b,
+  .classical-wash-c {
     animation: none;
-    opacity: 0.22;
-  }
-
-  .portfolio-text-shine {
-    animation: none;
-    background-position: 50% 50%;
+    opacity: 0.14;
   }
 }
 
-.portfolio-text-shine {
-  background: linear-gradient(
-    110deg,
-    #52525b 0%,
-    #e879f9 24%,
-    #fbbf24 44%,
-    #22d3ee 64%,
-    #a78bfa 84%,
-    #52525b 100%
-  );
-  background-size: 200% auto;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: portfolio-shine 7s linear infinite;
-}
-
-@media (prefers-color-scheme: dark) {
-  .portfolio-text-shine {
-    background: linear-gradient(
-      110deg,
-      #3f3f46 0%,
-      #c026d3 22%,
-      #d97706 42%,
-      #0891b2 62%,
-      #7c3aed 82%,
-      #3f3f46 100%
-    );
-    background-size: 200% auto;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
+.classical-hero-title {
+  color: var(--heading-ink);
+  -webkit-text-fill-color: var(--heading-ink);
+  text-shadow: none;
 }

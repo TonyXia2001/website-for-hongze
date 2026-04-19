@@ -10,6 +10,7 @@ export type GalleryItem = {
 
 /** Request a larger asset from Picsum-style URLs when opening the lightbox. */
 function largeImageSrc(url: string) {
+  if (!url.includes("picsum.photos")) return url;
   return url.replace(/\/\d+\/\d+(\?.*)?$/, "/1600/1600$1");
 }
 
@@ -52,7 +53,7 @@ export function GalleryGrid({ images }: { images: readonly GalleryItem[] }) {
             <button
               type="button"
               onClick={() => setOpenIndex(i)}
-              className="group relative aspect-square w-full cursor-zoom-in overflow-hidden rounded-2xl border-2 border-white bg-stone-50 text-left shadow-md shadow-stone-200/50 outline-none transition duration-300 ring-offset-2 ring-offset-[#fdfcfa] focus-visible:ring-2 focus-visible:ring-fuchsia-400 motion-safe:hover:z-10 motion-safe:hover:scale-[1.02] motion-safe:hover:border-fuchsia-200/90 motion-safe:hover:shadow-xl motion-safe:hover:shadow-fuchsia-200/40 dark:border-white dark:bg-stone-50 dark:ring-offset-[#f4f2f8] dark:motion-safe:hover:border-fuchsia-200/80"
+              className="group relative aspect-square w-full cursor-zoom-in overflow-hidden rounded-sm border border-[var(--classical-line)] bg-[var(--surface)] text-left shadow-sm outline-none transition duration-300 ring-offset-2 ring-offset-[var(--background)] focus-visible:ring-2 focus-visible:ring-[var(--classical-accent-soft)] motion-safe:hover:z-10 motion-safe:hover:scale-[1.01] motion-safe:hover:border-[var(--classical-accent-soft)] motion-safe:hover:shadow-md"
               aria-haspopup="dialog"
               aria-expanded={openIndex === i}
               aria-label={`View larger: ${img.alt}`}
@@ -65,7 +66,7 @@ export function GalleryGrid({ images }: { images: readonly GalleryItem[] }) {
                 sizes="(max-width: 640px) 50vw, 33vw"
                 className="object-cover transition duration-500 motion-safe:group-hover:scale-110"
               />
-              <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-stone-900/15 via-transparent to-white/30 opacity-0 transition group-hover:opacity-100 group-focus-visible:opacity-100" />
+              <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#5a3030]/18 via-transparent to-white/25 opacity-0 transition group-hover:opacity-100 group-focus-visible:opacity-100" />
             </button>
           </li>
         ))}
@@ -73,7 +74,7 @@ export function GalleryGrid({ images }: { images: readonly GalleryItem[] }) {
 
       {open && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-stone-900/55 p-4 backdrop-blur-sm dark:bg-stone-900/45"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-[#3a2a28]/65 p-4 backdrop-blur-sm"
           role="dialog"
           aria-modal="true"
           aria-labelledby="gallery-lightbox-title"
@@ -86,7 +87,7 @@ export function GalleryGrid({ images }: { images: readonly GalleryItem[] }) {
             ref={closeButtonRef}
             type="button"
             onClick={close}
-            className="absolute right-4 top-4 z-[60] rounded-full border border-white/30 bg-white/95 px-4 py-2 text-sm font-semibold text-zinc-800 shadow-md backdrop-blur transition hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-400 dark:bg-white/90"
+            className="absolute right-4 top-4 z-[60] rounded-sm border border-[var(--classical-line)] bg-[var(--background)] px-4 py-2 text-sm font-semibold text-[var(--foreground)] shadow-md transition hover:bg-[var(--surface)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--classical-accent-soft)]"
           >
             Close
           </button>

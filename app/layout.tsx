@@ -1,20 +1,23 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Cormorant_Garamond, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const classicalSerif = Cormorant_Garamond({
+  variable: "--font-classical-serif",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const classicalSans = Source_Sans_3({
+  variable: "--font-classical-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "Alex Rivera — Musician",
-  description: "Singer, songwriter, and performer — listen, watch, and connect.",
+  title: "Ian Zhao — Cellist",
+  description:
+    "Cellist based in the UK — solo, chamber, and orchestral work; repertoire, media, and contact.",
 };
 
 export default function RootLayout({
@@ -25,9 +28,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full scroll-smooth antialiased`}
+      className={`${classicalSerif.variable} ${classicalSans.variable} h-full scroll-smooth antialiased bg-[var(--background)]`}
     >
-      <body className="flex min-h-full flex-col font-sans">{children}</body>
+      <body className="flex min-h-full flex-col bg-[var(--background)] font-sans">
+        {children}
+      </body>
     </html>
   );
 }

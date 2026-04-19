@@ -2,7 +2,7 @@
 
 import type { MouseEvent } from "react";
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
 
 export type SiteNavLink = {
   label: string;
@@ -56,6 +56,8 @@ export function SiteHeader({
 }) {
   const headerRef = useRef<HTMLElement>(null);
   const [spacerHeight, setSpacerHeight] = useState(64);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuPanelId = useId();
 
   useEffect(() => {
     const el = headerRef.current;
@@ -69,22 +71,62 @@ export function SiteHeader({
     return () => ro.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [menuOpen]);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const onChange = () => {
+      if (mq.matches) setMenuOpen(false);
+    };
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
+  const closeMenu = useCallback(() => setMenuOpen(false), []);
+
   const onNavClick = useCallback(
     (e: MouseEvent<HTMLAnchorElement>, href: string) => {
+      const wasMenuOpen = menuOpen;
+      closeMenu();
       if (!href.startsWith("#")) return;
       const id = href.slice(1);
       const target = document.getElementById(id);
       if (!target) return;
 
       e.preventDefault();
-      const offset = headerRef.current?.offsetHeight ?? spacerHeight;
-      const y =
-        target.getBoundingClientRect().top + window.scrollY - offset - 4;
-      scrollWindowToY(y, 900);
-      window.history.replaceState(null, "", href);
+
+      const runScroll = () => {
+        const offset = headerRef.current?.getBoundingClientRect().height ?? spacerHeight;
+        const y =
+          target.getBoundingClientRect().top + window.scrollY - offset - 4;
+        scrollWindowToY(y, 900);
+        window.history.replaceState(null, "", href);
+      };
+
+      // After closing the drawer, the header is shorter; measure on the next frame(s)
+      // so the scroll offset matches the collapsed bar (fixes mobile in-page jumps).
+      if (wasMenuOpen) {
+        requestAnimationFrame(() => {
+          requestAnimationFrame(runScroll);
+        });
+      } else {
+        runScroll();
+      }
     },
-    [spacerHeight],
+    [closeMenu, menuOpen, spacerHeight],
   );
+
+  const navLinkClass =
+    "px-3 py-1.5 text-sm font-medium tracking-wide text-[var(--muted)] transition hover:text-[var(--foreground)]";
+  const navUnderlineClass =
+    "border-b border-transparent pb-0.5 transition hover:border-[var(--classical-accent-soft)]";
 
   return (
     <>
@@ -92,17 +134,19 @@ export function SiteHeader({
       <header
         ref={headerRef}
         id="site-header"
-        className="fixed top-0 left-0 right-0 z-40 border-b border-stone-200/80 bg-white/90 px-6 py-4 shadow-[0_8px_40px_-16px_rgba(232,121,249,0.12)] backdrop-blur-xl dark:border-stone-200/70 dark:bg-white/90 dark:shadow-[0_8px_40px_-16px_rgba(167,139,250,0.1)]"
+        className="fixed top-0 right-0 left-0 z-40 border-b border-[var(--classical-line)] bg-[var(--background)]/92 backdrop-blur-md"
       >
-        <div className="mx-auto flex max-w-5xl items-center justify-between gap-4">
+        <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-6 py-4">
           <Link
             href="/"
-            className="bg-gradient-to-r from-zinc-800 to-zinc-600 bg-clip-text text-sm font-bold tracking-tight text-transparent transition hover:opacity-80 dark:from-zinc-800 dark:to-zinc-600"
+            onClick={closeMenu}
+            className="font-serif text-lg font-semibold tracking-tight text-[var(--heading-ink)] transition hover:text-[var(--classical-accent)]"
           >
             {artistName}
           </Link>
+
           <nav
-            className="flex flex-wrap justify-end gap-x-1 gap-y-1 sm:gap-x-2"
+            className="hidden flex-wrap justify-end gap-x-0.5 gap-y-1 sm:gap-x-1 md:flex"
             aria-label="Page sections"
           >
             {links.map((link) => (
@@ -110,14 +154,64 @@ export function SiteHeader({
                 key={link.href}
                 href={link.href}
                 onClick={(e) => onNavClick(e, link.href)}
-                className="relative rounded-full px-3 py-1.5 text-sm font-medium text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-600 dark:hover:text-zinc-900"
+                className={navLinkClass}
               >
-                <span className="relative z-10">{link.label}</span>
-                <span className="absolute inset-0 -z-0 rounded-full bg-gradient-to-r from-fuchsia-400/0 via-fuchsia-200/60 to-amber-200/0 opacity-0 transition hover:opacity-100 dark:via-fuchsia-200/50" />
+                <span className={navUnderlineClass}>{link.label}</span>
               </a>
             ))}
           </nav>
+
+          <button
+            type="button"
+            className="flex h-10 w-10 shrink-0 flex-col items-center justify-center gap-[5px] text-[var(--heading-ink)] transition-opacity hover:opacity-70 active:opacity-55 md:hidden"
+            aria-expanded={menuOpen}
+            aria-controls={menuPanelId}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            <span
+              aria-hidden
+              className={`block h-0.5 w-5 rounded-full bg-current transition-transform duration-200 ${
+                menuOpen ? "translate-y-[7px] rotate-45" : ""
+              }`}
+            />
+            <span
+              aria-hidden
+              className={`block h-0.5 w-5 rounded-full bg-current transition duration-200 ${
+                menuOpen ? "scale-0 opacity-0" : ""
+              }`}
+            />
+            <span
+              aria-hidden
+              className={`block h-0.5 w-5 rounded-full bg-current transition-transform duration-200 ${
+                menuOpen ? "-translate-y-[7px] -rotate-45" : ""
+              }`}
+            />
+          </button>
         </div>
+
+        {menuOpen ? (
+          <div
+            id={menuPanelId}
+            className="border-t border-[var(--classical-line)] bg-[var(--background)]/95 backdrop-blur-md md:hidden"
+          >
+            <nav
+              className="mx-auto flex max-w-5xl flex-col px-6 py-2 pb-4"
+              aria-label="Page sections"
+            >
+              {links.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={(e) => onNavClick(e, link.href)}
+                  className={`${navLinkClass} border-b border-[var(--classical-line)]/80 py-3.5 last:border-b-0`}
+                >
+                  <span className={navUnderlineClass}>{link.label}</span>
+                </a>
+              ))}
+            </nav>
+          </div>
+        ) : null}
       </header>
     </>
   );
