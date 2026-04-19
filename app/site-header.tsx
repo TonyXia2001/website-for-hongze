@@ -9,11 +9,8 @@ export type SiteNavLink = {
   href: string;
 };
 
-function easeInOutCubic(t: number) {
-  return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-}
-
-function scrollWindowToY(targetY: number, durationMs: number) {
+/** Uses the browser’s smooth scroll (better feel than a fixed-duration ease on mobile). */
+function scrollWindowToY(targetY: number) {
   const prefersReduced =
     typeof window !== "undefined" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -24,27 +21,11 @@ function scrollWindowToY(targetY: number, durationMs: number) {
   );
   const clampedTarget = Math.max(0, Math.min(targetY, maxScroll));
 
-  if (prefersReduced) {
-    window.scrollTo({ top: clampedTarget, left: 0, behavior: "auto" });
-    return;
-  }
-
-  const startY = window.scrollY;
-  const distance = clampedTarget - startY;
-  if (Math.abs(distance) < 1) return;
-
-  let startTime: number | null = null;
-
-  function step(now: number) {
-    if (startTime === null) startTime = now;
-    const elapsed = now - startTime;
-    const t = Math.min(elapsed / durationMs, 1);
-    const eased = easeInOutCubic(t);
-    window.scrollTo(0, startY + distance * eased);
-    if (t < 1) requestAnimationFrame(step);
-  }
-
-  requestAnimationFrame(step);
+  window.scrollTo({
+    top: clampedTarget,
+    left: 0,
+    behavior: prefersReduced ? "auto" : "smooth",
+  });
 }
 
 export function SiteHeader({
@@ -106,7 +87,7 @@ export function SiteHeader({
         const offset = headerRef.current?.getBoundingClientRect().height ?? spacerHeight;
         const y =
           target.getBoundingClientRect().top + window.scrollY - offset - 4;
-        scrollWindowToY(y, 900);
+        scrollWindowToY(y);
         window.history.replaceState(null, "", href);
       };
 
