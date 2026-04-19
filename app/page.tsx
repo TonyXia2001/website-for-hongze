@@ -19,13 +19,13 @@ const heroImage = {
 
 const galleryImages = [
   { src: "/photos/mmexport1776579111394.jpg", alt: `${artist.name} — gallery 1` },
-  { src: "/photos/mmexport1776579116509.jpg", alt: `${artist.name} — gallery 2` },
+  { src: "/photos/mmexport1776621625786.jpg", alt: `${artist.name} — gallery 2` },
   { src: "/photos/mmexport1776579119011.jpg", alt: `${artist.name} — gallery 3` },
   { src: "/photos/mmexport1776579129365.jpg", alt: `${artist.name} — gallery 4` },
   { src: "/photos/mmexport1776579132250.jpg", alt: `${artist.name} — gallery 5` },
   { src: "/photos/mmexport1776579142321.jpg", alt: `${artist.name} — gallery 6` },
-  { src: "/photos/mmexport1776579144992.jpg", alt: `${artist.name} — gallery 7` },
-  { src: "/photos/mmexport1776579149733.jpg", alt: `${artist.name} — gallery 8` },
+  { src: "/photos/mmexport1776621289787.jpg", alt: `${artist.name} — gallery 7` },
+  { src: "/photos/mmexport1776621499953.jpg", alt: `${artist.name} — gallery 8` },
   { src: "/photos/mmexport1776579154979.jpg", alt: `${artist.name} — gallery 9` },
   { src: "/photos/mmexport1776579159213.jpg", alt: `${artist.name} — gallery 10` },
   { src: "/photos/mmexport1776579161740.jpg", alt: `${artist.name} — gallery 11` },
@@ -38,10 +38,9 @@ const galleryImages = [
   { src: "/photos/mmexport1776579185068.jpg", alt: `${artist.name} — gallery 18` },
 ] as const;
 
-const placeholderVideo = {
-  src: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
-  poster: "https://picsum.photos/seed/musician-video-poster/1280/720",
-};
+const performanceVideo = {
+  drivePreviewSrc: "https://drive.google.com/file/d/1Qhoee8_oOY2oHb3gEMYmgyK6ZF_qatml/preview",
+} as const;
 
 function SectionLabel({ children }: { children: ReactNode }) {
   return (
@@ -169,17 +168,13 @@ export default function Home() {
           <SectionLabel>Video</SectionLabel>
           <div className="group relative border border-[var(--classical-line)] bg-[var(--video-chrome)] p-1 shadow-lg">
             <div className="overflow-hidden bg-black">
-              <video
+              <iframe
                 className="aspect-video w-full transition duration-500 motion-safe:group-hover:brightness-105"
-                controls
-                playsInline
-                preload="metadata"
-                poster={placeholderVideo.poster}
-                aria-label="Performance video"
-              >
-                <source src={placeholderVideo.src} type="video/webm" />
-                Your browser does not support embedded video.
-              </video>
+                src={performanceVideo.drivePreviewSrc}
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+                title="Performance video"
+              />
             </div>
           </div>
         </section>

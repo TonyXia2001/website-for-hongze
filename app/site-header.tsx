@@ -9,22 +9,18 @@ export type SiteNavLink = {
   href: string;
 };
 
-/** Uses the browser’s smooth scroll (better feel than a fixed-duration ease on mobile). */
-function scrollWindowToY(targetY: number) {
-  const prefersReduced =
+function prefersReducedMotion() {
+  return (
     typeof window !== "undefined" &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  const maxScroll = Math.max(
-    0,
-    document.documentElement.scrollHeight - window.innerHeight,
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches
   );
-  const clampedTarget = Math.max(0, Math.min(targetY, maxScroll));
+}
 
-  window.scrollTo({
-    top: clampedTarget,
-    left: 0,
-    behavior: prefersReduced ? "auto" : "smooth",
+/** Uses scroll-margin on sections (e.g. scroll-mt-*) for the fixed header — avoids bad clamps when <html> is height-limited. */
+function scrollToSection(target: HTMLElement) {
+  target.scrollIntoView({
+    block: "start",
+    behavior: prefersReducedMotion() ? "auto" : "smooth",
   });
 }
 
@@ -84,10 +80,7 @@ export function SiteHeader({
       e.preventDefault();
 
       const runScroll = () => {
-        const offset = headerRef.current?.getBoundingClientRect().height ?? spacerHeight;
-        const y =
-          target.getBoundingClientRect().top + window.scrollY - offset - 4;
-        scrollWindowToY(y);
+        scrollToSection(target);
         window.history.replaceState(null, "", href);
       };
 
@@ -101,7 +94,7 @@ export function SiteHeader({
         runScroll();
       }
     },
-    [closeMenu, menuOpen, spacerHeight],
+    [closeMenu, menuOpen],
   );
 
   const navLinkClass =

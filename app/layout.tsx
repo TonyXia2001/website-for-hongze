@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${classicalSerif.variable} ${classicalSans.variable} h-full scroll-smooth antialiased bg-[var(--background)]`}
+      className={`${classicalSerif.variable} ${classicalSans.variable} h-full antialiased bg-[var(--background)]`}
     >
       <body className="flex min-h-full flex-col bg-[var(--background)] font-sans">
         {children}

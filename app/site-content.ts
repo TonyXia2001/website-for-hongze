@@ -7,7 +7,7 @@ export const artist = {
 
 /** Hero intro under the tagline (non-breaking space after “St” for tidy wrapping). */
 export const heroSummary =
-  "Soloist and chamber musician working across the UK and internationally — from St\u00a0Martin-in-the-Fields to Birmingham, with a particular love of chamber music, songful phrasing, and vivid colour at the cello." as const;
+  "Soloist and chamber musician working across the UK and internationally — from St\u00a0Martin-in-the-Fields to Symphony Hall, Birmingham, with a particular love of chamber music, songful phrasing, and vivid colour at the cello." as const;
 
 export const navLinks = [
   { label: "About", href: "#about" },
@@ -19,16 +19,20 @@ export const navLinks = [
 
 /** Edited lightly for clarity; facts follow bio.txt (professor name normalised to Trygstad). */
 export const bioParagraphs: readonly string[] = [
-  `Nicholas Trygstad has said that Ian Zhao is “highly sensitive to different musical colours”—attuned to harmonic change and able to shape a wide range of tonal colours. Alongside classical repertoire, he enjoys jazz and tango. During his Master’s studies at the Royal Northern College of Music from 2024, he performed Claude Bolling’s Suite for Cello and Jazz Piano Trio, which received strong praise from the examination panel, and Astor Piazzolla’s The Four Seasons of Buenos Aires in several cities in China.`,
-  `On 11 April 2025, he and pianist Joachim Lim gave a lunchtime recital at St Martin-in-the-Fields in London. When the last note of Shostakovich’s Cello Sonata finished, the audience burst into enthusiastic applause. He is keenly interested in chamber music in many forms—including cello duo at Birmingham Cathedral, string octet in Ipswich, and appearances with the Royal Birmingham Conservatoire Symphony Orchestra in Symphony Hall. Recently, his piano quartet won the Leamington Prize; they will give a concert at Holy Trinity Church, Leamington, on 9 June 2026. He has been invited to play with the LANO Quartet at Winchcombe Music Festival on 30 May 2026 and at the Cheltenham Music Festival.`,
-  `From August 2024 to 2026, he worked as an assistant to Professor Nicholas Trygstad, Head of Strings at the Royal Birmingham Conservatoire. In 2024 and 2025 he helped Professor Trygstad with teaching and translation at the “Cello Family” Music Festival and served as a resident teacher for Cello Family, combining the professor’s approach with his own experience to help students learn more effectively. In March 2026, he taught and assisted Professor Trygstad at masterclasses at Qingdao Yehudi Menuhin International Music School, Sichuan Conservatory of Music, and Xi’an Conservatory of Music.`,
-  `Ian began studying cello in 2009 with Professor Yu Mingqing (Head of Orchestra, Central Conservatory of Music) and with Professor Yu Jia. He studied at the Central Conservatory of Music for twelve years, then moved to Manchester in 2023 to study with Nicholas Trygstad at the Royal Northern College of Music on scholarship.`,
-  `He has competed several times in the national Aiqin Cup Cello Competition, winning second prize in the amateur division and fourth prize in the professional division. He won second place in the ensemble category at the Central Conservatory of Music’s 3rd Chamber Music Competition (with no first prize awarded) and was top winner in the Yiyang Top Talent competition. Other results include third place in the 2019 Aiqin Cup ensemble division and the gold prize in Open Group C at the 2021 Golden Hall String Invitational in Beijing. He has performed many times with the Central Conservatory of Music Symphony Orchestra, taken part in international music festivals, and studied with renowned cellists including Lynn Harrell and Li-Wei Qin.`,
+  `Nicholas Trygstad has described Ian Zhao as “highly sensitive to different musical colours”—attuned to harmonic change and able to shape a wide range of tonal colours. Alongside classical repertoire, he also enjoys jazz and tango. During his Master’s studies at the Royal Northern College of Music (2024), he performed Claude Bolling’s Suite for Cello & Jazz Piano Trio to strong praise from the examination panel, and Piazzolla’s The Four Seasons of Buenos Aires in several cities in China.`,
+  `On 11 April 2025, he and pianist Joachim Lim gave a lunchtime recital at St Martin-in-the-Fields in London. When the last note of Shostakovich’s Cello Sonata finished, the audience burst into enthusiastic applause. He is keenly interested in chamber music in many forms—performing as a cello duo at Birmingham Cathedral, in string octet repertoire in Ipswich, and with the Royal Birmingham Conservatoire Symphony Orchestra in Symphony Hall. Recently, his piano quartet won the Leamington Prize; they will give a concert at Holy Trinity Church, Leamington, on 9 June 2026. He has been invited to perform with the LANO Quartet at Winchcombe Music Festival on 30 May 2026, and at the Cheltenham Music Festival.`,
+  `From August 2024 to 2026, he worked as an assistant to Professor Nicholas Trygstad, Head of Strings at the Royal Birmingham Conservatoire. In 2024 and 2025 he supported teaching and translation at the “Cello Family” Music Festival and served as a resident teacher for Cello Family. In March 2026, he taught and assisted at masterclasses at Qingdao Menuhin International Music School, Sichuan Conservatory of Music, and Xi’an Conservatory of Music.`,
+  `Ian began studying cello in 2009 with Professor Yu Mingqing (Head of Orchestra, Central Conservatory of Music) and with Professor Yu Jia. He studied at the Central Conservatory of Music for twelve years, then moved to Manchester in 2023 to study with Nicholas Trygstad at the Royal Northern College of Music on scholarship. Following his Master’s, he was recommended by Professor Trygstad to continue studies at the Royal Birmingham Conservatoire on the Advanced Postgraduate Diploma (Professional Performer, Level 8).`,
+  `He has competed several times in the national Aiqin Cup Cello Competition, winning second prize in the amateur division and fourth prize in the professional division. He won second place in the ensemble category at the Central Conservatory of Music’s 3rd Chamber Music Competition (with no first prize awarded) and was the top winner in the Yiyang Top Talent competition. Other results include third place in the 2019 Aiqin Cup ensemble division and the gold prize in Open Group C at the 2021 Golden Hall String Invitational in Beijing. He has performed many times with the Central Conservatory of Music Symphony Orchestra, taken part in international music festivals, and studied with renowned cellists including Lynn Harrell and Liwei Qin.`,
 ];
 
 export const bioHighlights = [
   { label: "Instrument", value: "Cello" },
-  { label: "Studies", value: "RNCM (Manchester) · Central Conservatory of Music" },
+  {
+    label: "Studies",
+    value:
+      "Royal Birmingham Conservatoire (Adv. Postgraduate Diploma)\nRNCM (Manchester)\nCentral Conservatory of Music",
+  },
   {
     label: "Upcoming",
     value:
