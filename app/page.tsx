@@ -19,29 +19,38 @@ const heroImage = {
 };
 
 const galleryImages = [
-  { src: "/photos/mmexport1776579111394.jpg", alt: `${artist.name} — gallery 1` },
-  { src: "/photos/mmexport1776621625786.jpg", alt: `${artist.name} — gallery 2` },
-  { src: "/photos/mmexport1776579119011.jpg", alt: `${artist.name} — gallery 3` },
-  { src: "/photos/mmexport1776579129365.jpg", alt: `${artist.name} — gallery 4` },
-  { src: "/photos/mmexport1776579132250.jpg", alt: `${artist.name} — gallery 5` },
-  { src: "/photos/mmexport1776579142321.jpg", alt: `${artist.name} — gallery 6` },
-  { src: "/photos/mmexport1776621289787.jpg", alt: `${artist.name} — gallery 7` },
-  { src: "/photos/mmexport1776621499953.jpg", alt: `${artist.name} — gallery 8` },
-  { src: "/photos/mmexport1776579154979.jpg", alt: `${artist.name} — gallery 9` },
-  { src: "/photos/mmexport1776579159213.jpg", alt: `${artist.name} — gallery 10` },
-  { src: "/photos/mmexport1776579161740.jpg", alt: `${artist.name} — gallery 11` },
-  { src: "/photos/mmexport1776579163642.jpg", alt: `${artist.name} — gallery 12` },
-  { src: "/photos/mmexport1776579168286.jpg", alt: `${artist.name} — gallery 13` },
-  { src: "/photos/mmexport1776579172273.jpg", alt: `${artist.name} — gallery 14` },
-  { src: "/photos/mmexport1776579175190.jpg", alt: `${artist.name} — gallery 15` },
-  { src: "/photos/mmexport1776579177936.jpg", alt: `${artist.name} — gallery 16` },
-  { src: "/photos/mmexport1776579181216.jpg", alt: `${artist.name} — gallery 17` },
-  { src: "/photos/mmexport1776579185068.jpg", alt: `${artist.name} — gallery 18` },
+  { src: "/photos/IMG_5540.JPG", alt: `${artist.name} — gallery 1` },
+  { src: "/photos/IMG_5541.JPG", alt: `${artist.name} — gallery 2` },
+  { src: "/photos/IMG_5542.JPG", alt: `${artist.name} — gallery 3` },
+  { src: "/photos/IMG_5543.JPG", alt: `${artist.name} — gallery 4` },
+  { src: "/photos/IMG_5544.JPG", alt: `${artist.name} — gallery 5` },
+  { src: "/photos/IMG_5545.JPG", alt: `${artist.name} — gallery 6` },
+  { src: "/photos/IMG_5546.JPG", alt: `${artist.name} — gallery 7` },
+  { src: "/photos/IMG_5547.JPG", alt: `${artist.name} — gallery 8` },
+  { src: "/photos/IMG_5548.JPG", alt: `${artist.name} — gallery 9` },
+  { src: "/photos/IMG_5552.JPG", alt: `${artist.name} — gallery 10` },
+  { src: "/photos/IMG_5553.JPG", alt: `${artist.name} — gallery 11` },
+  { src: "/photos/IMG_5554.JPG", alt: `${artist.name} — gallery 12` },
+  { src: "/photos/IMG_5555.JPG", alt: `${artist.name} — gallery 13` },
+  { src: "/photos/IMG_5556.JPG", alt: `${artist.name} — gallery 14` },
+  { src: "/photos/IMG_5557.JPG", alt: `${artist.name} — gallery 15` },
+  { src: "/photos/IMG_5558.JPG", alt: `${artist.name} — gallery 16` },
+  { src: "/photos/IMG_5559.JPG", alt: `${artist.name} — gallery 17` },
+  { src: "/photos/IMG_5562.jpg", alt: `${artist.name} — gallery 18` },
 ] as const;
 
-const performanceVideo = {
-  drivePreviewSrc: "https://drive.google.com/file/d/1Qhoee8_oOY2oHb3gEMYmgyK6ZF_qatml/preview",
-} as const;
+const performanceVideos = [
+  {
+    title: "Performance video 1",
+    drivePreviewSrc:
+      "https://drive.google.com/file/d/1yCydq9P8ucT51-2w9A2g2ZQTz2__xOT2/preview",
+  },
+  {
+    title: "Performance video 2",
+    drivePreviewSrc:
+      "https://drive.google.com/file/d/1oCrxYdKaEFHM3fkki67c3vbz5BmgyGYC/preview",
+  },
+] as const;
 
 function SectionLabel({ children }: { children: ReactNode }) {
   return (
@@ -180,16 +189,23 @@ export default function Home() {
 
         <section id="video" className="scroll-mt-28 space-y-8">
           <SectionLabel>Video</SectionLabel>
-          <div className="group relative border border-[var(--classical-line)] bg-[var(--video-chrome)] p-1 shadow-lg">
-            <div className="overflow-hidden bg-black">
-              <iframe
-                className="aspect-video w-full transition duration-500 motion-safe:group-hover:brightness-105"
-                src={performanceVideo.drivePreviewSrc}
-                allow="autoplay; fullscreen; picture-in-picture"
-                allowFullScreen
-                title="Performance video"
-              />
-            </div>
+          <div className="grid gap-8">
+            {performanceVideos.map((video) => (
+              <div
+                key={video.drivePreviewSrc}
+                className="group relative border border-[var(--classical-line)] bg-[var(--video-chrome)] p-1 shadow-lg"
+              >
+                <div className="overflow-hidden bg-black">
+                  <iframe
+                    className="aspect-video w-full transition duration-500 motion-safe:group-hover:brightness-105"
+                    src={video.drivePreviewSrc}
+                    allow="autoplay; fullscreen; picture-in-picture"
+                    allowFullScreen
+                    title={video.title}
+                  />
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
