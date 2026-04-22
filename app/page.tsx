@@ -1,13 +1,13 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
 import { AboutBio } from "./about-bio";
+import { CvSection } from "./cv-section";
 import { GalleryGrid } from "./gallery-grid";
 import { RepertoireTimeline } from "./repertoire-timeline";
 import {
   artist,
   bioHighlights,
   contactEmail,
-  heroSummary,
   navLinks,
 } from "./site-content";
 import { SiteHeader } from "./site-header";
@@ -85,9 +85,6 @@ export default function Home() {
                 {artist.tagline}
               </p>
             </div>
-            <p className="hidden max-w-xl text-lg leading-relaxed text-[color:var(--muted)] md:block">
-              {heroSummary}
-            </p>
             <div className="flex flex-wrap items-center gap-3 pt-1 md:gap-4 md:pt-0">
               <a
                 href="#video"
@@ -162,6 +159,14 @@ export default function Home() {
         <section id="repertoire" className="scroll-mt-28 space-y-8 border-t border-[var(--classical-line)] pt-20">
           <SectionLabel>Repertoire</SectionLabel>
           <RepertoireTimeline />
+        </section>
+
+        <section
+          id="cv"
+          className="scroll-mt-28 space-y-8 border-t border-[var(--classical-line)] pt-20"
+        >
+          <SectionLabel>CV</SectionLabel>
+          <CvSection />
         </section>
 
         <section id="video" className="scroll-mt-28 space-y-8">

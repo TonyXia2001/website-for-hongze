@@ -5,13 +5,10 @@ export const artist = {
   tagline: "Cello · Solo, chamber & orchestral",
 } as const;
 
-/** Hero intro under the tagline (non-breaking space after “St” for tidy wrapping). */
-export const heroSummary =
-  "Soloist and chamber musician working across the UK and internationally — from St\u00a0Martin-in-the-Fields to Symphony Hall, Birmingham, with a particular love of chamber music, songful phrasing, and vivid colour at the cello." as const;
-
 export const navLinks = [
   { label: "About", href: "#about" },
   { label: "Repertoire", href: "#repertoire" },
+  { label: "CV", href: "#cv" },
   { label: "Video", href: "#video" },
   { label: "Gallery", href: "#gallery" },
   { label: "Contact", href: "#contact" },
@@ -52,21 +49,23 @@ export const repertoireSections = [
   {
     title: "Classical",
     items: [
-      "Beethoven — Cello Sonatas Nos. 2 and 4",
-      "Schubert — Cello Sonata in A minor (Arpeggione)",
+      "Beethoven — Cello Sonata No. 2",
+      "Beethoven — Cello Sonata No. 4",
       "Haydn — Cello Concerto in C major",
       "Haydn — Cello Concerto in D major",
+      "Schubert — Cello Sonata in A minor",
     ],
   },
   {
     title: "Romantic",
     items: [
-      "Fauré — Berceuse; Papillon; Après un rêve",
-      "Franck — Cello Sonata in A major",
-      "Brahms — Cello Sonata in E minor",
-      "Schumann — Cello Concerto in A minor",
       "Dvořák — Cello Concerto in B minor",
       "Elgar — Cello Concerto in E minor",
+      "Fauré — Berceuse",
+      "Fauré — Papillon",
+      "Fauré — Après un rêve",
+      "Franck — Cello Sonata in A major",
+      "Schumann — Cello Concerto in A minor",
       "Tchaikovsky — Rococo Variations",
       "Schumann — Adagio and Allegro",
     ],
@@ -74,9 +73,9 @@ export const repertoireSections = [
   {
     title: "20th century & contemporary",
     items: [
-      "Shostakovich — Cello Sonata in D minor",
-      "Prokofiev — Cello Sonata in C major",
       "Claude Bolling — Suite for Cello and Jazz Piano Trio",
+      "Prokofiev — Cello Sonata in C major",
+      "Shostakovich — Cello Sonata in D minor",
     ],
   },
   {
@@ -87,7 +86,6 @@ export const repertoireSections = [
       "Schubert — Piano Trio in B major, D. 898",
       "Mendelssohn — String Quartet, Op. 80",
       "Mendelssohn — Octet for strings",
-      "Mendelssohn — Piano Trio in D minor, Op. 49",
       "Brahms — Piano Trio, Op. 8",
       "Brahms — Piano Trio, Op. 26",
       "Rachmaninov — Piano Trio No. 1 in G minor",
@@ -97,3 +95,162 @@ export const repertoireSections = [
 ] as const;
 
 export const contactEmail = "zhaohongze0816@163.com" as const;
+
+export const cvSummary = {
+  affiliation: "Royal Birmingham Conservatoire",
+  phones: ["+44 7391 149349", "+86 13718477908"],
+  email: "zhaohongze0816@163.com",
+} as const;
+
+export const cvEducation = [
+  {
+    degree: "Advanced Postgraduate Diploma — Professional Performance (Cello)",
+    years: "2025–2026",
+    institution: "Royal Birmingham Conservatoire",
+    teacher: "Nicholas Trygstad",
+  },
+  {
+    degree: "Master of Music in Performance — Cello Performance",
+    years: "2023–2024",
+    institution: "Royal Northern College of Music",
+    teacher: "Nicholas Trygstad",
+  },
+  {
+    degree: "Bachelor of Music — Cello Performance",
+    years: "2018–2022",
+    institution: "Central Conservatory of Music",
+    teacher: "Mingqing Yu",
+  },
+] as const;
+
+export const cvTeaching = [
+  {
+    years: "2026",
+    details:
+      "Teacher and translator for Nicholas Trygstad at Qingdao Menuhin International Music School, Xi’an Conservatory of Music, and Sichuan Conservatory of Music; also gave two masterclasses at Qingdao Menuhin.",
+  },
+  {
+    years: "2024–2025",
+    details:
+      "Teaching assistant and translator for Nicholas Trygstad at the Cello Family Festival.",
+  },
+] as const;
+
+export const cvConcertHighlights = [
+  {
+    title: "Shostakovich Music Festival",
+    when: "10–14 Nov (RBC recital hall)",
+    details: [
+      "Shostakovich String Quartet No. 4 (with chamber orchestra; principal cello)",
+      "Shostakovich String Quartet No. 7",
+      "Shostakovich Piano Trio No. 1",
+    ],
+  },
+  {
+    title: "Solo concert",
+    when: "11 Apr 2025 (St Martin-in-the-Fields, London)",
+    details: [
+      "Bach — Cello Suite No. 1",
+      "Fauré — selected pieces",
+      "Shostakovich — Cello Sonata in D minor (with Joachim Lim)",
+    ],
+  },
+  {
+    title: "Alcester Annual Concert",
+    when: "5 Apr (Alcester)",
+    details: ["Shostakovich — Cello Sonata in D minor (with Joachim Lim)"],
+  },
+  {
+    title: "Chamber concert",
+    when: "19 Mar 2025 (Ipswich)",
+    details: ["Mendelssohn — Octet (ensemble TBC)"],
+  },
+  {
+    title: "Trio concert",
+    when: "14 Nov 2024 (RBC recital hall)",
+    details: ["Fauré — Piano Trio (with Pascal Rogé and Caroline Pether)"],
+  },
+  {
+    title: "Trio concert",
+    when: "20 Aug 2024 (Weihai)",
+    details: [
+      "Piazzolla — The Four Seasons of Buenos Aires",
+      "Paul Schoenfeld — Café Music",
+    ],
+  },
+  {
+    title: "Duo concert",
+    when: "18 Jul 2024 (Qingdao)",
+    details: ["Cello Family Festival — expert concert (with Nicholas Trygstad)"],
+  },
+  {
+    title: "Solo project",
+    when: "7 Jun 2024 (RNCM)",
+    details: [
+      "Franck — Cello Sonata in A major",
+      "Claude Bolling — Suite for Cello and Jazz Piano Trio",
+    ],
+  },
+  {
+    title: "Tour performances",
+    when: "May–Jun 2023 (15 cities, China)",
+    details: [],
+  },
+  {
+    title: "Selected earlier performances",
+    when: "2016–2023",
+    details: [
+      "Schubert — Piano Trio in B major, D. 898; Piazzolla — Le Grand Tango (Jul 2023)",
+      "Dvořák — Cello Concerto in B minor (Jun 2022)",
+      "Beethoven — String Quartet Op. 132 (Jun 2022); Op. 127 (May 2021)",
+      "Schumann — Cello Concerto in A minor (with David Geringas, Apr 2019)",
+      "Brahms — Piano Trio Op. 8 (German Embassy, Jun 2016)",
+    ],
+  },
+] as const;
+
+export const cvOrchestra = [
+  { role: "RBC Symphony Orchestra (Principal Cello)", when: "Oct 2025" },
+  { role: "RBC Orchestra for Spring Opera", when: "Mar 2025" },
+  { role: "RBC Symphony Orchestra (Principal Cello)", when: "Oct 2024" },
+  { role: "RNCM Chamber Orchestra × Royal Northern Sinfonia", when: "Apr 2024" },
+  { role: "RNCM Symphony Orchestra", when: "Mar 2024" },
+  {
+    role: "RNCM Brand New Orchestra (side-by-side with BBC Philharmonic)",
+    when: "Jan 2024",
+  },
+  { role: "Nanchang Symphony Orchestra (Sub-Principal)", when: "Mar 2023" },
+  { role: "China Broadcast Symphony Orchestra", when: "Sep 2022" },
+  { role: "Central Conservatory of Music Symphony Orchestra", when: "2020–2022" },
+  { role: "China Youth Symphony Orchestra (Sub-Principal)", when: "2018–2021" },
+  { role: "China Junior Symphony Orchestra", when: "2016–2017" },
+] as const;
+
+export const cvMasterclasses = [
+  { name: "Hanna Roberts", year: "2024" },
+  { name: "Jeroen Reuling", year: "2022" },
+  { name: "Philippe Muller", year: "2019" },
+  { name: "Joanna Sachryn", year: "2019" },
+  { name: "Liwei Qin", year: "2018" },
+  { name: "Rodin Kirill", year: "2017" },
+  { name: "Lynn Harrell", year: "2016–2017" },
+  { name: "Igor Ivanovich Gavrysh", year: "2016" },
+] as const;
+
+export const cvAwards = [
+  {
+    title: "Cello Family International Cello Competition",
+    when: "Aug 2021",
+    result: "3rd Prize (Youth group)",
+  },
+  {
+    title: "Central Conservatory of Music Scholarship Competition",
+    when: "2016",
+    result: "2nd Prize (Trio, chamber group; no 1st prize awarded)",
+  },
+  {
+    title: "China “AiQin” Cup Cello Competition",
+    when: "2012",
+    result: "4th Prize (Junior group)",
+  },
+] as const;
