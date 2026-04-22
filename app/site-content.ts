@@ -2,12 +2,13 @@
 
 export const artist = {
   name: "Ian Zhao",
-  tagline: "Cello · Solo, chamber & orchestral",
+  tagline: "Cello · Solo",
 } as const;
 
 export const navLinks = [
   { label: "About", href: "#about" },
   { label: "Repertoire", href: "#repertoire" },
+  { label: "Programmes", href: "#programmes" },
   { label: "CV", href: "#cv" },
   { label: "Video", href: "#video" },
   { label: "Gallery", href: "#gallery" },
@@ -95,6 +96,24 @@ export const repertoireSections = [
 ] as const;
 
 export const contactEmail = "zhaohongze0816@163.com" as const;
+
+export const exampleProgrammes = [
+  {
+    title: "Lunchtime concert",
+    items: [
+      "Bach — Cello Suite No. 1 in G major, BWV 1007",
+      "Fauré — Three Pieces: I. Berceuse · II. Papillon · III. Après un rêve",
+      "Shostakovich — Cello Sonata in D minor",
+    ],
+  },
+  {
+    title: "Evening concert",
+    items: [
+      "Schubert — Arpeggione Sonata in A minor, D. 821: I. Allegro moderato · II. Adagio · III. Allegretto",
+      "Prokofiev — Cello Sonata in C major, Op. 119: I. Andante grave · II. Moderato · III. Allegro, ma non troppo",
+    ],
+  },
+] as const;
 
 export const cvSummary = {
   affiliation: "Royal Birmingham Conservatoire",

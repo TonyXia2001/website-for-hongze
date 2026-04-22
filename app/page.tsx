@@ -3,6 +3,7 @@ import Image from "next/image";
 import { AboutBio } from "./about-bio";
 import { CvSection } from "./cv-section";
 import { GalleryGrid } from "./gallery-grid";
+import { ProgrammesSection } from "./programmes-section";
 import { RepertoireTimeline } from "./repertoire-timeline";
 import {
   artist,
@@ -69,7 +70,7 @@ export default function Home() {
 
       <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-28 px-6 py-16 sm:gap-32 sm:py-24">
         <section
-          className="relative grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,320px)] md:items-center md:gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,400px)] lg:gap-16"
+          className="relative grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,360px)] md:items-center md:gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,460px)] lg:gap-16"
           aria-labelledby="hero-heading"
         >
           <div className="relative z-10 order-2 flex flex-col gap-6 md:order-1 md:gap-8 lg:gap-10">
@@ -77,7 +78,7 @@ export default function Home() {
             <div className="space-y-3 md:space-y-4 lg:space-y-5">
               <h1
                 id="hero-heading"
-                className="classical-hero-title font-serif text-[clamp(2.375rem,7.5vw,3rem)] font-semibold leading-[1.02] tracking-[-0.03em] text-[var(--heading-ink)] md:text-6xl md:leading-[1.02] lg:text-[4rem] lg:tracking-[-0.03em] xl:text-[4.25rem]"
+                className="classical-hero-title font-serif text-[clamp(2.75rem,8.25vw,3.5rem)] font-semibold leading-[1.01] tracking-[-0.03em] text-[var(--heading-ink)] md:text-7xl md:leading-[1.01] lg:text-[4.75rem] lg:tracking-[-0.035em] xl:text-[5.25rem]"
               >
                 {artist.name}
               </h1>
@@ -110,7 +111,7 @@ export default function Home() {
               className="absolute -bottom-7 -left-3 hidden h-[4.5rem] w-px bg-[var(--classical-accent-soft)]/45 md:block lg:-bottom-8 lg:-left-4"
               aria-hidden
             />
-            <div className="group relative aspect-[4/5] w-full transition duration-500 motion-safe:hover:scale-[1.01] md:w-full md:max-w-[400px]">
+            <div className="group relative aspect-[4/5] w-full transition duration-500 motion-safe:hover:scale-[1.01] md:w-full md:max-w-[440px] lg:max-w-[500px]">
               <div
                 className="absolute -inset-3 border border-[var(--classical-accent-soft)]/60 md:-inset-[10px] md:border-[var(--classical-accent-soft)]/50 lg:-inset-3"
                 aria-hidden
@@ -121,7 +122,7 @@ export default function Home() {
                   alt={heroImage.alt}
                   fill
                   priority
-                  sizes="(max-width: 768px) min(100vw, 36rem), (max-width: 1024px) 320px, 400px"
+                  sizes="(max-width: 768px) min(100vw, 38rem), (max-width: 1024px) 360px, 500px"
                   className="object-cover object-top transition duration-700 motion-safe:group-hover:brightness-[1.02]"
                 />
               </div>
@@ -159,6 +160,14 @@ export default function Home() {
         <section id="repertoire" className="scroll-mt-28 space-y-8 border-t border-[var(--classical-line)] pt-20">
           <SectionLabel>Repertoire</SectionLabel>
           <RepertoireTimeline />
+        </section>
+
+        <section
+          id="programmes"
+          className="scroll-mt-28 space-y-8 border-t border-[var(--classical-line)] pt-20"
+        >
+          <SectionLabel>Example programmes</SectionLabel>
+          <ProgrammesSection />
         </section>
 
         <section

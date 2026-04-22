@@ -9,6 +9,7 @@ export function RepertoireTimeline() {
         const num =
           romanNumerals[index] ?? String(index + 1);
         const isLast = index === repertoireSections.length - 1;
+        const listId = `repertoire-${index}`;
         return (
           <li
             key={section.title}
@@ -31,13 +32,45 @@ export function RepertoireTimeline() {
               </div>
             </div>
 
-            <div className="min-w-0 border border-[var(--classical-line)] bg-[var(--surface)]/95 p-5 shadow-sm md:p-6">
-              <div className="border-b border-[var(--classical-line)] pb-4">
-                <h2 className="font-serif text-xl font-semibold leading-tight text-[var(--foreground)] md:text-2xl">
-                  {section.title}
-                </h2>
-              </div>
-              <ul className="mt-4 space-y-2.5 text-[var(--muted)]">
+            <details
+              className="group min-w-0 border border-[var(--classical-line)] bg-[var(--surface)]/95 p-5 shadow-sm md:p-6"
+              open
+            >
+              <summary
+                aria-controls={listId}
+                className="cursor-pointer list-none"
+              >
+                <div className="flex items-center justify-between gap-4 border-[var(--classical-line)] group-open:border-b group-open:pb-4">
+                  <h2 className="font-serif text-xl font-semibold leading-tight text-[var(--foreground)] md:text-2xl">
+                    {section.title}
+                  </h2>
+                  <span
+                    aria-hidden
+                    className="shrink-0 text-[var(--classical-accent-soft)] transition-transform duration-200 group-open:rotate-180"
+                  >
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="block"
+                    >
+                      <path
+                        d="M5.5 7.5L10 12l4.5-4.5"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </div>
+              </summary>
+              <ul
+                id={listId}
+                className="mt-4 space-y-2.5 text-[var(--muted)]"
+              >
                 {section.items.map((work) => (
                   <li
                     key={work}
@@ -47,7 +80,7 @@ export function RepertoireTimeline() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </details>
           </li>
         );
       })}
